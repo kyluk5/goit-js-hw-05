@@ -8,8 +8,10 @@ class Car {
      * который принимает объект-машину как параметр и выводит
      * в консоль значения свойств maxSpeed, speed, isOn, distance и price.
      */
-    static getSpecs(car) {
-        console.log(car);
+    static getSpecs({ _maxSpeed, _speed, _isOn, _distance, _price }) {
+        console.log(
+            `maxSpeed: ${_maxSpeed}, speed: ${_speed}, isOn: ${_isOn}, distance: ${_distance}, price: ${_price}`,
+        );
     }
     /*
      * Конструктор получает объект настроек.
@@ -22,11 +24,11 @@ class Car {
      *  distance - общий киллометраж, изначально 0
      */
     constructor({ speed = 0, price, maxSpeed, isOn = false, distance = 0 }) {
-        this.speed = speed;
+        this._speed = speed;
         this._price = price;
-        this.maxSpeed = maxSpeed;
-        this.isOn = isOn;
-        this.distance = distance;
+        this._maxSpeed = maxSpeed;
+        this._isOn = isOn;
+        this._distance = distance;
     }
 
     /*
@@ -45,7 +47,7 @@ class Car {
      * Записывает в свойство isOn значение true
      */
     turnOn() {
-        this.isOn = true
+        this._isOn = true
     }
 
     /*
@@ -55,8 +57,8 @@ class Car {
      */
     turnOff() {
 
-        this.isOn = false,
-            this.speed = 0
+        this._isOn = false,
+            this._speed = 0
 
     }
 
@@ -66,8 +68,8 @@ class Car {
      * не больше чем значение свойства maxSpeed
      */
     accelerate(value) {
-        if (this.speed < this.maxSpeed) {
-            this.speed += value
+        if (this._speed < this._maxSpeed) {
+            this._speed += value
         }
     }
 
@@ -77,7 +79,7 @@ class Car {
      */
     decelerate(value) {
         if (value > 0) {
-            this.speed -= value
+            this._speed -= value
         }
     }
 
@@ -86,8 +88,8 @@ class Car {
      * но только в том случае если машина заведена!
      */
     drive(hours) {
-        if (this.isOn) {
-            this.distance += hours * this.speed
+        if (this._isOn) {
+            this._distance += hours * this._speed
         }
     }
 }
